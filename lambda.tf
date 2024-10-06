@@ -1,15 +1,27 @@
+data "aws_ssm_parameter" "secret" {
+  name            = var.secret_parameter_name
+  with_decryption = true
+}
+
 resource "aws_lambda_function" "hello_world" {
   function_name = "HelloWorld"
 
   s3_bucket = aws_s3_bucket.lambda_bucket.id
   s3_key    = aws_s3_object.lambda_hello_world.key
 
-  runtime = "nodejs20.x"
-  handler = "hello.handler"
+  handler = "webserver.lambda_handler"
+  runtime = "python3.12"
+
 
   source_code_hash = data.archive_file.lambda_hello_world.output_base64sha256
 
   role = aws_iam_role.lambda_exec.arn
+
+  environment {
+    variables = {
+      auth_token = "${data.aws_ssm_parameter.secret.value}"
+    }
+  }
 }
 
 resource "aws_cloudwatch_log_group" "hello_world" {
