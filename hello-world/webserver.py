@@ -12,7 +12,7 @@ def lambda_handler(event, context):
         'Content-Type': 'application/json',
     }
     data = {
-        "flow": "75d66485-de91-40e1-bbd0-b0ce1fffc787",
+        "flow": "904f3f94-5a21-41cc-a8d3-f21a69b71311",
         "urns": ["whatsapp:558299805910"]
     }
 
