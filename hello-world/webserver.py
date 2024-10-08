@@ -21,3 +21,8 @@ def lambda_handler(event, context):
     # Verifique a resposta
     print(response.status_code)
     print(response.json())
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Parâmetros recebidos com sucesso!')
+    }

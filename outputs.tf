@@ -12,3 +12,13 @@ output "function_name" {
 
   value = aws_lambda_function.hello_world.function_name
 }
+
+output "api_gateway_id" {
+  description = "ID do API Gateway"
+  value       = aws_api_gateway_rest_api.my_api.id
+}
+
+output "invoke_url" {
+  description = "URL para invocar a API"
+  value       = "${aws_api_gateway_rest_api.my_api.execution_arn}/myresource"
+}
