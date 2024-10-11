@@ -32,7 +32,7 @@ def lambda_handler(event, context):
     # Extract the request context
     print(f'output: {event}')
     
-    params_dict = event
+    params_dict = event.get('queryStringParameters', {})
     
     response_body = {
             "query_parameters": event
