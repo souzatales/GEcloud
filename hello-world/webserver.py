@@ -1,9 +1,10 @@
 import requests
 import json
 import os
+import json
+from urllib.parse import urlparse, parse_qs
 
-
-def lambda_handler(event, context):
+def turn(uuid, phone):
 
     url = 'https://rapidpro.ilhasoft.mobi/api/v2/flow_starts.json'
     
@@ -12,17 +13,49 @@ def lambda_handler(event, context):
         'Content-Type': 'application/json',
     }
     data = {
-        "flow": "904f3f94-5a21-41cc-a8d3-f21a69b71311",
-        "urns": ["whatsapp:558299805910"]
+        "flow": uuid,
+        "urns": [f'whatsapp:{phone}']
     }
 
     response = requests.post(url, headers=headers, data=json.dumps(data))
 
-    # Verifique a resposta
+    # Debug only
     print(response.status_code)
     print(response.json())
 
-    return {
-        'statusCode': 200,
-        'body': json.dumps('Parâmetros recebidos com sucesso!')
-    }
+    if(response.status_code == 201):
+        return True
+    return False
+
+
+def lambda_handler(event, context):
+    # Extract the request context
+    print(f'output: {event}')
+    
+    params_dict = event
+    
+    response_body = {
+            "query_parameters": event
+        }
+    
+    try:
+        uuid = params_dict['flow']
+        phone = params_dict['urn']
+
+        if(turn(uuid, phone)):
+            return {
+                'statusCode': 200,
+                'body': json.dumps(response_body),
+                'headers': {
+                    'Content-Type': 'application/json'
+                }
+            }
+    except KeyError:
+        
+        return {
+                'statusCode': 400,
+                'body': json.dumps(response_body),
+                'headers': {
+                    'Content-Type': 'application/json'
+                }
+            }
