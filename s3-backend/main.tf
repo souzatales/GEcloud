@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "bucket" {
-    bucket = "gecloud-terraform-state-backend"
+    bucket = "gecloud-terraform-state-rp-turn-backend"
     versioning {
         enabled = true
     }
@@ -14,7 +14,7 @@ resource "aws_s3_bucket" "bucket" {
         object_lock_enabled = "Enabled"
     }
     tags = {
-        Name = "S3 Remote Terraform State Store"
+        Name = "S3 Remote RP flow start Terraform State Store"
     }
 }
 
@@ -28,6 +28,6 @@ resource "aws_dynamodb_table" "terraform-lock" {
         type = "S"
     }
     tags = {
-        "Name" = "DynamoDB Terraform State Lock Table"
+        "Name" = "DynamoDB RP flow start Terraform State Lock Table"
     }
 }

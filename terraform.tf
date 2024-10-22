@@ -1,9 +1,9 @@
 
 terraform {
   backend "s3" {
-    bucket         = "gecloud-terraform-state-backend"
-    key            = "terraform.tfstate"
-    region         = "us-east-1"
+    bucket         = "gecloud-terraform-state-rp-turn-backend"
+    key            = "staging/terraform.tfstate"
+    region         = "eu-west-1"
     dynamodb_table = "terraform_state"
   }
 

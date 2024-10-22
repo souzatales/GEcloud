@@ -1,8 +1,6 @@
 import requests
 import json
 import os
-import json
-# from urllib.parse import urlparse, parse_qs
 
 def turn(uuid, phone):
 

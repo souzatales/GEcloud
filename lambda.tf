@@ -1,5 +1,5 @@
 data "aws_ssm_parameter" "secret" {
-  name            = var.secret_parameter_name
+  name            = var.secret_parameter_rp
   with_decryption = true
 }
 
