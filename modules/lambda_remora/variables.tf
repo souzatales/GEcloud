@@ -55,7 +55,12 @@ variable "api_gateway_deploy_stage_name" {
   description = "API Gateway Desployment Stage Name"
 }
 
-variable "aws_lambda_function_output_name" {
+variable "aws_lambda_function_source_path" {
+  type        = string
+  description = "AWS Lambda Function Output Name"
+}
+
+variable "aws_lambda_function_package_name" {
   type        = string
   description = "AWS Lambda Function Output Name"
 }

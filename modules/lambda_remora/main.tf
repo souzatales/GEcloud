@@ -34,14 +34,14 @@ resource "aws_s3_bucket_acl" "lambda_bucket" {
 data "archive_file" "lambda_remora" {
   type = "zip"
 
-  source_dir  = path.module
-  output_path = "${path.module}/${var.aws_lambda_function_output_name}"
+  source_dir  = "../../modules/${var.aws_lambda_function_source_path}"
+  output_path = "${path.module}/${var.aws_lambda_function_package_name}"
 }
 
 resource "aws_s3_object" "lambda_remora" {
   bucket = aws_s3_bucket.lambda_bucket.id
 
-  key    = var.aws_lambda_function_output_name
+  key    = var.aws_lambda_function_package_name
   source = data.archive_file.lambda_remora.output_path
 
   etag = filemd5(data.archive_file.lambda_remora.output_path)

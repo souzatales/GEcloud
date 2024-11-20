@@ -12,7 +12,8 @@ module "ge-turnui-rapidproflowconnector-01" {
   api_gateway_deploy_stage_name      = "prod"
   secret_parameter_rp                = "secret_key_rp_bigsis_prod" # mandatory and must be created outside this Terraform code
   aws_region                         = "eu-west-1"
-  aws_lambda_function_output_name    = "remora.zip"
+  aws_lambda_function_source_path    = "app_remora"
+  aws_lambda_function_package_name   = "remora.zip"
 }
 
 locals {

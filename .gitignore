@@ -35,3 +35,11 @@ override.tf.json
 terraform.rc
 remora.zip
 response.json
+
+
+.DS_Store
+
+modules/app_remora/**/*
+
+# Allow
+!modules/app_remora/webserver.py
