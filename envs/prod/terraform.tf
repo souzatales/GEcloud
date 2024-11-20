@@ -3,7 +3,7 @@ terraform {
   # We can't reference variables here and the key must be unique for each environment
   backend "s3" {
     bucket         = "gecloud-terraform-state-rp-turn-backend"
-    key            = "pro/terraform.tfstate" # Change for each environment under /env folder
+    key            = "prod/terraform.tfstate" # Change for each environment under /env folder
     region         = "eu-west-1"
     dynamodb_table = "terraform_state"
   }
