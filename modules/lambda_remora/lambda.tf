@@ -31,7 +31,7 @@ resource "aws_cloudwatch_log_group" "remora" {
 }
 
 resource "aws_iam_role" "lambda_exec" {
-  name = "serverless_lambda"
+  name = "${var.aws_lambda_function_name}_serverless_lambda"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"

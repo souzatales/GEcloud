@@ -9,8 +9,8 @@ provider "aws" {
 }
 
 resource "random_pet" "lambda_bucket_name" {
-  prefix = "${var.aws_lambda_function_name}-terraform-functions"
-  length = 4
+  prefix = "${var.aws_lambda_function_name}-tf-func"
+  length = 1
 }
 
 resource "aws_s3_bucket" "lambda_bucket" {

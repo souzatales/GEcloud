@@ -3,7 +3,7 @@ terraform {
   # We can't reference variables here and the key must be unique for each environment
   backend "s3" {
     bucket         = "ge-terraform-s3-01"
-    key            = "prod/terraform.tfstate" # Change for each environment under /env folder
+    key            = "prod/wz/terraform.tfstate" # Change for each environment under /env folder
     region         = "eu-west-1"
     dynamodb_table = "ge-terraform-s3-01-terraform-state"
   }
